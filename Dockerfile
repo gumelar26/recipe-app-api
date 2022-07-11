@@ -1,11 +1,11 @@
-FROM python:3.9-alphine3.13
+FROM python:3.9-alpine3.13
 LABEL maintainer="gumelarmuhamad26@gmail.com"
 
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
-COPY ./app ./app
+COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
@@ -19,7 +19,7 @@ RUN python -m venv /py && \
     rm -rf /tmp && \
     adduser \
         --disabled-password \
-        -- no-create-home \
+        --no-create-home \
         django-user
 
 ENV PATH="/py/bin:$PATH"
